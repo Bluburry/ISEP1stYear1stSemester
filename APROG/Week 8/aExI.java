@@ -1,0 +1,36 @@
+import java.util.Scanner;
+
+public class aExI {
+    static final Scanner read = new Scanner(System.in);
+    static final int FLOORS = 4;
+    static final int ENTRANCES = 3;
+    public static void readNames(String[][] array) {
+        for (int i = 0; i < array.length; i++) {
+            for (int j = 0; j < array[0].length; j++) {
+                array[i][j] = read.nextLine();
+            }
+        }
+    }
+    public static void findTenant(String[][] array, String name) {
+        boolean flagLives = false;
+        for (int i = 0; i < array.length; i++) {
+            for (int j = 0; j < array[0].length; j++) {
+                if (name.equals(array[i][j])) {
+                    flagLives = true;
+                    System.out.print(printApartment(i, j, name));
+                }
+            }
+        }
+        if (!flagLives)
+            System.out.println("Do not live in the building");
+    }
+    public static String printApartment(int entrance, int floor, String name) {
+        return "name=" + name + "\nentrance=" + entrance + "\nfloor=" + floor + "\n";
+    }
+    public static void main(String[] args) {
+        String tenants[][] = new String[ENTRANCES][FLOORS];
+        readNames(tenants);
+        String tenantToFind = read.nextLine();
+        findTenant(tenants, tenantToFind);
+    }
+}
